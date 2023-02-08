@@ -24,8 +24,7 @@ async function onSubmit(e) {
     reset.resetPage();
     const data = await API.getImages(inputValue);
     const images = await data.hits;
-    buttonLoadMoreEL.classList.remove('hidden');
-    if (images === []) {
+      if (images === []) {
       throw new Error();
     }
     Notiflix.Notify.info(`Hooray! We found ${data.total} images.`);
@@ -97,9 +96,9 @@ function updateNewList(markup) {
        captionsData: 'alt',
        captionDelay: 250,
        focus: false,
-       });
- 
-}
+     });
+    buttonLoadMoreEL.classList.remove('hidden');
+ }
 
 function onError(error) {
   console.error(error);
