@@ -1,4 +1,4 @@
-import axios from 'axios'; 
+import axios from 'axios';
 
 const API_KEY = '33396133-a1b2adde6227e288651288158';
 const URL = 'https://pixabay.com/api/';
@@ -12,11 +12,11 @@ async function getImages(query) {
     ` ${URL}?key=${API_KEY}&q=${query}&image_type=${imageType}&orientation=${imageOrientation}&safesearch=${imageSafeSearch}&page=${page}&per_page=40`
   );
   page += 1;
- return response.data.hits;
-};
+  return response.data;
+}
 
 function resetPage() {
   page = 1;
-};
+}
 
-export default { getImages, resetPage };
+export default {getImages, resetPage};
