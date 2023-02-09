@@ -7,7 +7,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const formEL = document.getElementById('search-form');
 const galleryEL = document.querySelector('.gallery');
 const buttonLoadMoreEL = document.querySelector('.load-more');
-
 buttonLoadMoreEL.classList.add('hidden');
 
 formEL.addEventListener('submit', onSubmit);
@@ -16,6 +15,7 @@ buttonLoadMoreEL.addEventListener('click', onLoadMore);
 let inputValue = ' ';
 
 async function onSubmit(e) {
+  buttonLoadMoreEL.classList.add('hidden');
   galleryEL.innerHTML = '';
   e.preventDefault();
   const form = e.currentTarget;
@@ -24,31 +24,31 @@ async function onSubmit(e) {
     reset.resetPage();
     const data = await API.getImages(inputValue);
     const images = await data.hits;
-      if (images === []) {
+    if (images === []) {
       throw new Error();
     }
-    Notiflix.Notify.info(`Hooray! We found ${data.total} images.`);
-    const markup = images.reduce(
+    const markup = await images.reduce(
       (markup, item) => createList(item) + markup,
       ' '
     );
+    Notiflix.Notify.info(`Hooray! We found ${data.total} images.`);
     updateNewList(markup);
   } catch (error) {
-    onError(error);
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
   } finally {
     form.reset();
   }
 }
 
 async function onLoadMore() {
-  galleryEL.innerHTML = '';
   try {
     const data = await API.getImages(inputValue);
     const images = await data.hits;
     if (images.length === 0) {
       throw new Error();
     }
-
     const markup = images.reduce(
       (markup, item) => createList(item) + markup,
       ' '
@@ -91,19 +91,10 @@ function createList({
 }
 
 function updateNewList(markup) {
-  galleryEL.innerHTML = markup;
+  galleryEL.insertAdjacentHTML('beforeend', markup);
   new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
   }).refresh();
   buttonLoadMoreEL.classList.remove('hidden');
-   }
-
-function onError(error) {
-  Notiflix.Notify.failure(
-    'Sorry, there are no images matching your search query. Please try again.'
-  );
 }
-
-
-
