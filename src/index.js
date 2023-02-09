@@ -72,7 +72,7 @@ function createList({
 }) {
   return `<div class="photo-card">
     <a class="gallery__item"  href=${largeImageURL}>
-    <img src="${webformatURL}" alt="${tags}" loading="lazy"/></a>
+    <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="300"/></a>
     <div class="info">
       <p class="info-item">
         <b>Likes ${likes}</b>
@@ -92,16 +92,14 @@ function createList({
 
 function updateNewList(markup) {
   galleryEL.innerHTML = markup;
-     const gallery = new SimpleLightbox('.gallery a', {
-       captionsData: 'alt',
-       captionDelay: 250,
-       focus: false,
-     });
-    buttonLoadMoreEL.classList.remove('hidden');
- }
+  new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  }).refresh();
+  buttonLoadMoreEL.classList.remove('hidden');
+   }
 
 function onError(error) {
-  console.error(error);
   Notiflix.Notify.failure(
     'Sorry, there are no images matching your search query. Please try again.'
   );

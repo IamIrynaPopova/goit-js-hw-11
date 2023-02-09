@@ -1,7 +1,13 @@
+img {
+  display: block;
+  width: 100%;
+}
+
 .search-form {
   display: flex;
   justify-content: center;
-  padding: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
 
   background-color: #3498db;
   border-bottom: 2px solid #282121b1;
@@ -23,6 +29,54 @@
   cursor: pointer;
 
   font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  font-weight: 500;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+.gallery-item {
+  display: block;
+  // max-width: 100%;
+  height: auto;
+}
+.gallery__image {
+  display: block;
+  background-size: cover;
+  height: 200px;
+}
+
+.photo-card {
+  width: calc((100% - 80px) / 4);
+  border-radius: 0px 0px 4px 4px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
+ 
+}
+
+.photo-card > .info {
+  flex-grow: 1;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+}
+
+.info-item {
+  font-size: 15px;
   font-weight: 400;
   line-height: 1;
   font-weight: 500;
@@ -59,4 +113,5 @@
 
 .hidden {
   visibility: hidden;
+  opacity: 0;
 }
