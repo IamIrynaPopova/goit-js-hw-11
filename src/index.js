@@ -55,6 +55,7 @@ async function onLoadMore() {
     );
     updateNewList(markup);
   } catch (error) {
+    buttonLoadMoreEL.classList.add('hidden');
     Notiflix.Notify.failure(
       "We're sorry, but you've reached the end of search results."
     );
