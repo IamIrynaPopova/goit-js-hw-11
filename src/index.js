@@ -24,10 +24,10 @@ async function onSubmit(e) {
     reset.resetPage();
     const data = await API.getImages(inputValue);
     const images = await data.hits;
-    if (images === []) {
-      throw new Error();
+    if (images.length === 0) {
+           throw new Error();
     }
-    const markup = await images.reduce(
+      const markup = await images.reduce(
       (markup, item) => createList(item) + markup,
       ' '
     );

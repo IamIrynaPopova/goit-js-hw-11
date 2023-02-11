@@ -14,7 +14,9 @@ img {
   padding: 20px;
   margin-bottom: 20px;
 
-  background-color: #3498db;
+  // background-color: #3498db;
+  background:linear-gradient(
+    to right,#1186d3,#e6e61de0);
   border-bottom: 2px solid #282121b1;
 }
 
@@ -50,8 +52,7 @@ img {
 
 .gallery-item {
   display: block;
-  // max-width: 100%;
-  height: auto;
+   height: auto;
 }
 .gallery__image {
   display: block;
@@ -115,6 +116,7 @@ img {
   cursor: pointer;
   box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }
+
 
 .hidden {
   visibility: hidden;
